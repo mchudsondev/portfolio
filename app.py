@@ -29,7 +29,7 @@ def enviar():
         # Monta a carta para a API do Resend
         params = {
             "from": "Portfolio Hudson <onboarding@resend.dev>",
-            "to": [MEU_EMAIL],
+            "to": MEU_EMAIL,
             "reply_to": email_cliente, # Se você responder o e-mail, vai para o cliente
             "subject": f"Novo Contato: {assunto} - {nome}",
             "html": f"""

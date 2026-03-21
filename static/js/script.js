@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     form.reset();
                 } else {
-                    alert("Erro ao enviar! O Google bloqueou a autenticação. Verifique a senha de App no .env.");
+                    alert("Erro ao enviar a mensagem. O servidor está indisponível ou ocorreu um erro. Tente novamente mais tarde.");
                 }
             } catch (error) {
                 alert("O servidor Python não está rodando. Digite 'python app.py' no terminal.");
