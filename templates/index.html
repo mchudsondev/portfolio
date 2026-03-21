@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENG. Hudson Caires | Engenheiro de Software Junior</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="grid-bg">
+
+    <nav class="fixed w-full z-50 nav-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold gradient-text">ENG. HUDSON CAIRES</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider">Início</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider">Sobre</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider">Serviços</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider">Portfólio</a>
+                    <a href="#contact" class="btn-primary px-6 py-2 rounded-full text-white font-medium text-sm">Fale Comigo</a>
+                </div>
+                
+                <button class="md:hidden text-white" id="mobileMenuBtn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu fixed top-0 right-0 w-64 h-full bg-[#0a0e27] border-l border-white/10 md:hidden" id="mobileMenu">
+            <div class="p-6">
+                <button id="closeMobileMenu" class="absolute top-6 right-6 text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div class="mt-12 space-y-6">
+                    <a href="#home" class="block text-gray-300 hover:text-white transition-colors mobile-link">Início</a>
+                    <a href="#about" class="block text-gray-300 hover:text-white transition-colors mobile-link">Sobre</a>
+                    <a href="#services" class="block text-gray-300 hover:text-white transition-colors mobile-link">Serviços</a>
+                    <a href="#portfolio" class="block text-gray-300 hover:text-white transition-colors mobile-link">Portfólio</a>
+                    <a href="#contact" class="block text-white font-medium mobile-link">Contato</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <canvas id="particles-canvas"></canvas>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-6 inline-block">
+                <span class="px-4 py-2 rounded-full glass text-[#00d4ff] text-sm font-medium tracking-wider uppercase border border-[#00d4ff]/30">
+                    Disponível para Projetos
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                Engenheiro de Software<br>
+                <span class="gradient-text">Hudson Caires</span>
+            </h1>
+            
+            <div class="text-xl md:text-2xl text-gray-400 mb-8 h-8">
+                <span id="typing-text"></span><span class="cursor"></span>
+            </div>
+            
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg mb-12 leading-relaxed">
+                Transformo ideias complexas em soluções digitais elegantes. 
+                Especialista em arquitetura de sistemas, cloud computing e 
+                aplicações de alta performance.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#portfolio" class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center gap-2 group">
+                    Ver Projetos
+                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+                <a href="#contact" class="px-8 py-4 rounded-full border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all">
+                    Iniciar Conversa
+                </a>
+            </div>
+            
+            <div class="mt-16 flex justify-center gap-8 text-gray-500">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span class="text-sm">GitHub</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <span class="text-sm">LinkedIn</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-[#00d4ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="py-20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center stat-item">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-target="3">0</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wider">Anos de Experiência</div>
+                </div>
+                <div class="text-center stat-item">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-target="15">0</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wider">Projetos Entregues</div>
+                </div>
+                <div class="text-center stat-item">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-target="10">0</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wider">Clientes Satisfeitos</div>
+                </div>
+                <div class="text-center stat-item">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-target="99">0</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wider">% Taxa de Sucesso</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-[#00d4ff] to-[#ffd700] rounded-2xl opacity-20 blur-2xl"></div>
+                    <div class="relative glass rounded-2xl p-8 float">
+                        <div class="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-[#00d4ff]/20 to-[#ffd700]/20 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#0099cc] flex items-center justify-center text-4xl font-bold">
+                                    HC
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2">Hudson Caires</h3>
+                                <p class="text-[#00d4ff]">Software Engineer</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Arquitetura</span>
+                                <div class="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full bg-[#00d4ff] rounded-full" data-width="95%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Cloud/AWS</span>
+                                <div class="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full bg-[#00d4ff] rounded-full" data-width="90%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Microserviços</span>
+                                <div class="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full bg-[#ffd700] rounded-full" data-width="92%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">DevOps</span>
+                                <div class="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full bg-[#ffd700] rounded-full" data-width="88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-sm text-[#00d4ff] uppercase tracking-wider mb-4 font-semibold">Sobre Mim</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Arquiteto de Soluções<br>
+                        <span class="gradient-text">Digitais Inovadoras</span>
+                    </h3>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                        Sou Hudson Caires e estou iniciando minha jornada como Engenheiro de Software. Especializo-me em criar sistemas robustos e escaláveis que impulsionam o crescimento de negócios. Minha abordagem combina excelência técnica com visão estratégica.
+                    </p>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        A funcionalidade que você esperava foi desenvolvida. Vamos juntos transformar o seu processo?
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">Código Limpo</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">Metodologias Ágeis</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-[#ffd700]/10 flex items-center justify-center text-[#ffd700]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">Segurança First</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-[#ffd700]/10 flex items-center justify-center text-[#ffd700]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">Performance Otimizada</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-white font-semibold inline-flex items-center gap-2">
+                        Vamos Trabalhar Juntos
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#00d4ff]/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-20">
+                <h2 class="text-sm text-[#00d4ff] uppercase tracking-wider mb-4 font-semibold">Serviços</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">Soluções Completas em<br><span class="gradient-text">Tecnologia</span></h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card glass rounded-2xl p-8 hover:border-[#00d4ff]/50 transition-all duration-300 group cursor-pointer">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff] mb-6 text-2xl">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 group-hover:text-[#00d4ff] transition-colors">Arquitetura de Software</h4>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Design de sistemas escaláveis e resilientes, utilizando padrões modernos 
+                        como microserviços, event-driven architecture e Domain-Driven Design.
+                    </p>
+                    <ul class="space-y-2 text-gray-500 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"></span>
+                            Microserviços & APIs
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"></span>
+                            Sistemas Distribuídos
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"></span>
+                            Database Design
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card glass rounded-2xl p-8 hover:border-[#ffd700]/50 transition-all duration-300 group cursor-pointer">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-[#ffd700]/10 flex items-center justify-center text-[#ffd700] mb-6 text-2xl">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 group-hover:text-[#ffd700] transition-colors">Cloud & DevOps</h4>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Implementação de infraestrutura cloud-native com AWS, Azure ou GCP, 
+                        automação de pipelines CI/CD e práticas DevOps de ponta.
+                    </p>
+                    <ul class="space-y-2 text-gray-500 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#ffd700]"></span>
+                            AWS/Azure/GCP
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#ffd700]"></span>
+                            Kubernetes & Docker
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#ffd700]"></span>
+                            CI/CD Pipelines
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card glass rounded-2xl p-8 hover:border-[#00d4ff]/50 transition-all duration-300 group cursor-pointer">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff] mb-6 text-2xl">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 group-hover:text-[#00d4ff] transition-colors">Desenvolvimento Full Stack</h4>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Desenvolvimento end-to-end de aplicações web e mobile, desde o backend 
+                        robusto até interfaces modernas e responsivas.
+                    </p>
+                    <ul class="space-y-2 text-gray-500 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"></span>
+                            React, Node.js, Python
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"></span>
+                            Mobile (React Native)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"></span>
+                            Banco de Dados SQL/NoSQL
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-sm text-[#00d4ff] uppercase tracking-wider mb-4 font-semibold">Portfólio</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">Projetos <span class="gradient-text">Entregues</span></h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-3d group relative">
+                    <div class="glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#00d4ff]/50 transition-all duration-500">
+                        <div class="aspect-video bg-gradient-to-br from-[#00d4ff]/20 to-[#0099cc]/20 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-6xl font-bold text-white/10">01</span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0e27] to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="px-3 py-1 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] text-xs font-medium border border-[#00d4ff]/30">
+                                    Fintech
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 group-hover:text-[#00d4ff] transition-colors">Plataforma de Pagamentos</h4>
+                            <p class="text-gray-400 text-sm mb-4">
+                                Sistema de processamento de pagamentos em tempo real, 
+                                processando 10k+ transações por segundo com 99.99% uptime.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">Node.js</span>
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">AWS</span>
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">PostgreSQL</span>
+                            </div>
+                            <a href="#" class="text-[#00d4ff] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Ver Case Study
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-3d group relative">
+                    <div class="glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#ffd700]/50 transition-all duration-500">
+                        <div class="aspect-video bg-gradient-to-br from-[#ffd700]/20 to-[#ffaa00]/20 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-6xl font-bold text-white/10">02</span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0e27] to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="px-3 py-1 rounded-full bg-[#ffd700]/20 text-[#ffd700] text-xs font-medium border border-[#ffd700]/30">
+                                    HealthTech
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 group-hover:text-[#ffd700] transition-colors">Telemedicina SaaS</h4>
+                            <p class="text-gray-400 text-sm mb-4">
+                                Plataforma completa de telemedicina com videochamadas HIPAA-compliant, 
+                                prontuário eletrônico e integração com wearables.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">React</span>
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">WebRTC</span>
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">Python</span>
+                            </div>
+                            <a href="#" class="text-[#ffd700] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Ver Case Study
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-3d group relative">
+                    <div class="glass rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all duration-500">
+                        <div class="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-6xl font-bold text-white/10">03</span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0e27] to-transparent opacity-60"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-medium border border-purple-500/30">
+                                    E-commerce
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">Marketplace B2B</h4>
+                            <p class="text-gray-400 text-sm mb-4">
+                                Marketplace corporativo com catálogo de 50k+ produtos, 
+                                sistema de cotações e integração com ERPs corporativos.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">Next.js</span>
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">GraphQL</span>
+                                <span class="px-2 py-1 rounded bg-white/5 text-xs text-gray-400">MongoDB</span>
+                            </div>
+                            <a href="#" class="text-purple-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Ver Case Study
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="px-8 py-4 rounded-full border border-white/20 text-white font-medium hover:bg-white/5 transition-all inline-flex items-center gap-2">
+                    Ver Todos os Projetos
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#00d4ff]/5 via-transparent to-[#ffd700]/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-20">
+                <h2 class="text-sm text-[#00d4ff] uppercase tracking-wider mb-4 font-semibold">Depoimentos</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">O que dizem os <span class="gradient-text">Clientes</span></h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card glass rounded-2xl p-8 border border-white/10 relative">
+                    <div class="absolute -top-4 -left-4 w-8 h-8 bg-[#00d4ff] rounded-full flex items-center justify-center text-[#0a0e27] font-bold text-xl">"</div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        "Hudson transformou completamente nossa infraestrutura. 
+                        Reduzimos custos em 40% e aumentamos a performance em 300%. 
+                        Profissional excepcional."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#0099cc] flex items-center justify-center font-bold text-white">
+                            MR
+                        </div>
+                        <div>
+                            <div class="font-semibold text-white">Mariana Rodrigues</div>
+                            <div class="text-sm text-gray-500"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card glass rounded-2xl p-8 border border-white/10 relative mt-8 md:mt-0">
+                    <div class="absolute -top-4 -left-4 w-8 h-8 bg-[#ffd700] rounded-full flex items-center justify-center text-[#0a0e27] font-bold text-xl">"</div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        "Entrega impecável e dentro do prazo. Sua expertise em 
+                        arquitetura de microserviços foi crucial para o sucesso 
+                        do nosso lançamento."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#ffd700] to-[#ffaa00] flex items-center justify-center font-bold text-[#0a0e27]">
+                            PC
+                        </div>
+                        <div>
+                            <div class="font-semibold text-white">Paulo Costa</div>
+                            <div class="text-sm text-gray-500"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card glass rounded-2xl p-8 border border-white/10 relative">
+                    <div class="absolute -top-4 -left-4 w-8 h-8 bg-[#00d4ff] rounded-full flex items-center justify-center text-[#0a0e27] font-bold text-xl">"</div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        "Raro encontrar alguém que combina visão técnica e 
+                        compreensão de negócios tão bem. Nosso sistema nunca 
+                        esteve tão estável."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-white">
+                            AL
+                        </div>
+                        <div>
+                            <div class="font-semibold text-white">Ana Lima</div>
+                            <div class="text-sm text-gray-500"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-sm text-[#00d4ff] uppercase tracking-wider mb-4 font-semibold">Contato</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-6">Vamos criar algo<br><span class="gradient-text">incrível juntos?</span></h3>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Estou disponível para projetos freelance, consultoria ou 
+                        oportunidades de longo prazo. Vamos discutir como posso 
+                        ajudar a transformar sua visão em realidade.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-xl bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 mb-1">Email</div>
+                                <div class="text-white font-medium">mchudson.dev@gmail.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-xl bg-[#ffd700]/10 flex items-center justify-center text-[#ffd700]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 mb-1">Localização</div>
+                                <div class="text-white font-medium">Vitória da Conquista, Brasil (Remoto Worldwide)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 mb-1">Disponibilidade</div>
+                                <div class="text-white font-medium">Aberto para novos projetos</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-gray-400 hover:text-[#00d4ff] hover:border-[#00d4ff]/50 transition-all border border-white/10">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-gray-400 hover:text-[#00d4ff] hover:border-[#00d4ff]/50 transition-all border border-white/10">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-gray-400 hover:text-[#00d4ff] hover:border-[#00d4ff]/50 transition-all border border-white/10">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl p-8 border border-white/10">
+                    <form class="space-y-6" id="contactForm">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Nome</label>
+                                <input type="text" id="nome" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] transition-colors" placeholder="Seu nome" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] transition-colors" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Assunto</label>
+                            <select id="assunto" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-[#00d4ff] transition-colors" required>
+                                <option value="" class="bg-[#0a0e27]">Selecione um assunto</option>
+                                <option value="projeto" class="bg-[#0a0e27]">Novo Projeto</option>
+                                <option value="consultoria" class="bg-[#0a0e27]">Consultoria</option>
+                                <option value="freela" class="bg-[#0a0e27]">Freelance</option>
+                                <option value="outro" class="bg-[#0a0e27]">Outro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Mensagem</label>
+                            <textarea id="mensagem" rows="4" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] transition-colors resize-none" placeholder="Conte-me sobre seu projeto..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary py-4 rounded-lg text-white font-semibold text-lg flex items-center justify-center gap-2 group">
+                            Enviar Mensagem
+                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl font-bold gradient-text">ENG. HUDSON CAIRES</span>
+                    <span class="text-gray-500">|</span>
+                    <span class="text-gray-400 text-sm">Engenheiro de Software</span>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    © 2026 Hudson Caires. Todos os direitos reservados.
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacidade</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
