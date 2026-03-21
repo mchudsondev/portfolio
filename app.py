@@ -62,7 +62,7 @@ def enviar():
         }
 
         # Dispara o e-mail pela porta segura da internet (Ignorando o bloqueio do Render)
-        email_response = resend.Emails.send(params)
+        email_response = resend.Emails.send(params)  # type: ignore
         
         # Registra o sucesso no terminal
         id_envio = email_response.get('id', 'ID não retornado') if isinstance(email_response, dict) else email_response
